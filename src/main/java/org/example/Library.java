@@ -4,6 +4,7 @@ import jakarta.data.Sort;
 import jakarta.data.repository.Delete;
 import jakarta.data.repository.Find;
 import jakarta.data.repository.Insert;
+import jakarta.data.repository.OrderBy;
 import jakarta.data.repository.Query;
 import jakarta.data.repository.Repository;
 import jakarta.transaction.Transactional;
@@ -29,9 +30,12 @@ public interface Library {
     void delete(String isbn);
 
     @Find
-    List<Book> booksSorted(Sort<Book> bookSort);
+    List<Book> allBooks(Sort<Book> bookSort);
 
-    record Summary(String isbn, String title, String authors) {}
+    @Find
+    @OrderBy("isbn")
+    List<Book> allBooks();
+
     @Query("select b.isbn, b.title, listagg(a.name, ' & ') "
             + "from Book b join b.authors a "
             + "group by b "

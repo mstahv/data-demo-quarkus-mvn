@@ -32,7 +32,7 @@ public class LibraryResource {
     @GET
     @Path("/books")
     public  List<Book> allBooks() {
-        return library.booksSorted(_Book.title.ascIgnoreCase());
+        return library.allBooks(_Book.title.ascIgnoreCase());
     }
 
     @POST
@@ -52,7 +52,7 @@ public class LibraryResource {
 
     @GET
     @Path("/summary")
-    public  List<Library.Summary> summary() {
+    public  List<Summary> summary() {
         return library.summarize();
     }
 
