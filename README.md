@@ -1,8 +1,18 @@
 # Demo app for Hibernate Data Repositories on Quarkus
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework, and Hibernate's implementation of Jakarta Data.
+This project shows Hibernate's implementation of Jakarta Data used from Quarkus RESTEasy Classic.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Here we observe:
+
+- Jakarta Persistence annotations used to declare and map entity types like `Book`, `Author`, and `Publisher`,
+- Jakarta Data annotations used to declare a `Library` repository acting as a facade to Hibernate's `StatelessSession`, and
+- JAX-RS annotations used to declare the frontend `LibraryResource`, with `Library` injected via CDI.
+
+## Dependencies:
+
+- Quarkus 3.8.3 with RESTEasy Classic and Jackson
+- Jakarta Data 1.0.0-M4
+- Hibernate 6.5.0-SNAPSHOT
 
 ## Running the application in dev mode
 
@@ -52,23 +62,3 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 You can then execute your native executable with: `./target/data-demo-quarkus-mvn-1.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-## Related Guides
-
-- Hibernate ORM ([guide](https://quarkus.io/guides/hibernate-orm)): Define your persistent model with Hibernate ORM and
-  Jakarta Persistence
-- JDBC Driver - H2 ([guide](https://quarkus.io/guides/datasource)): Connect to the H2 database via JDBC
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
