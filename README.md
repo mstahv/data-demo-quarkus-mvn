@@ -10,9 +10,9 @@ Here we observe:
 
 ## Dependencies:
 
-- Quarkus 3.8.3 with RESTEasy Classic and Jackson
-- Jakarta Data 1.0.0-M4
-- Hibernate 6.5.0-SNAPSHOT
+- Quarkus 3.15.1 or above, with RESTEasy Classic and Jackson
+- Jakarta Data 1.0.0
+- Hibernate Metamodel Generator 6.6.0.Final
 
 ## Running the application in dev mode
 
