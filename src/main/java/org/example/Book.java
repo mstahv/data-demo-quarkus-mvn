@@ -6,6 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.NaturalId;
 
 import java.math.BigDecimal;
@@ -14,7 +15,6 @@ import java.time.LocalDate;
 import java.util.Set;
 
 import static jakarta.persistence.EnumType.STRING;
-import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
 public class Book {
@@ -39,7 +39,7 @@ public class Book {
     @ManyToMany(mappedBy = Author_.BOOKS)
     Set<Author> authors;
 
-    @Basic(optional = false)
+    @NotNull
     public int pages;
 
     public BigDecimal price;

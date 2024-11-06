@@ -1,9 +1,9 @@
 package org.example;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Set;
 
@@ -12,7 +12,7 @@ public class Publisher {
     @Id
     public long id;
 
-    @Basic(optional = false)
+    @NotNull
     public String name;
 
     @OneToMany(mappedBy = Book_.PUBLISHER)

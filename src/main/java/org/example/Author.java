@@ -1,9 +1,9 @@
 package org.example;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Set;
 
@@ -12,7 +12,7 @@ public class Author {
     @Id
     public String ssn;
 
-    @Basic(optional = false)
+    @NotNull
     public String name;
 
     public Address address;
