@@ -36,10 +36,12 @@ public interface Library {
     @OrderBy("isbn")
     List<Book> allBooks();
 
-    @Query("select b.isbn, b.title, listagg(a.name, ' & ') "
-            + "from Book b join b.authors a "
-            + "group by b "
-            + "order by b.isbn")
+    @Query("""
+            select b.isbn, b.title, listagg(a.name, ' & ')
+            from Book b join b.authors a
+            group by b
+            order by b.isbn
+            """)
     List<Summary> summarize();
 
 }
