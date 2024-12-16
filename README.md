@@ -1,6 +1,7 @@
 # Demo app for Hibernate Data Repositories on Quarkus
 
-This project shows Hibernate's implementation of Jakarta Data used from Quarkus RESTEasy Classic.
+[Hibernate Data Repositories](https://hibernate.org/repositories) is an implementation of Jakarta Data backed by Hibernate ORM.
+This project shows Hibernate Data Repositories used from Quarkus RESTEasy Classic.
 
 Here we observe:
 
@@ -8,11 +9,13 @@ Here we observe:
 - Jakarta Data annotations used to declare a `Library` repository acting as a facade to Hibernate's `StatelessSession`, and
 - JAX-RS annotations used to declare the frontend `LibraryResource`, with `Library` injected via CDI.
 
+This is the Maven version. There's also a [Gradle version](https://github.com/gavinking/data-demo-quarkus).
+
 ## Dependencies:
 
-- Quarkus 3.15.1 or above, with RESTEasy Classic and Jackson
-- Jakarta Data 1.0.0
-- Hibernate Metamodel Generator 6.6.0.Final
+- Quarkus 3.15 or above, with RESTEasy Classic and Jackson
+- Jakarta Data 1.0
+- Hibernate Metamodel Generator 6.6
 
 ## Running the application in dev mode
 
