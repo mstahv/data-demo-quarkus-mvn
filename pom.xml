@@ -55,7 +55,6 @@
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
-            <version>6.6.3.Final</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
