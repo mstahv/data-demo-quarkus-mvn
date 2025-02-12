@@ -1,59 +1,59 @@
 package org.example;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.NotFoundException;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import org.jboss.resteasy.annotations.jaxrs.PathParam;
+import org.hibernate.StatelessSession;
 
 import java.util.List;
 
-@Path("/")
+@ApplicationScoped
 public class LibraryResource {
 
     @Inject Library library;
+    @Inject EntityManager em;
+    @Inject
+    StatelessSession session;
 
-    @GET
-    @Path("/book/{isbn}")
-    public Book byIsbn(@PathParam String isbn) {
+    public Book byIsbn(String isbn) {
         return library.byIsbn(isbn)
-                .orElseThrow(() ->new NotFoundException(isbn));
+                .orElseThrow(() ->new RuntimeException("Not found" + isbn));
     }
 
-    @GET
-    @Path("/title/{title}")
-    public List<Book> byTitle(@PathParam String title) {
+    public void loadAuthors(Book book) {
+        session.fetch(book.authors);
+    }
+
+    public List<Book> byTitle(String title) {
         String pattern = '%' + title.replace('*', '%') + '%';
         return library.byTitle(pattern);
     }
 
-    @GET
-    @Path("/books")
     public  List<Book> allBooks() {
         return library.allBooks(_Book.title.ascIgnoreCase());
     }
 
-    @POST
-    @Path("/new")
     public String create(Book book) {
         library.add(book);
         return "Added " + book.isbn;
     }
 
-    @POST
-    @Path("/delete/{isbn}")
     @Transactional
-    public String delete(@PathParam String isbn) {
+    public String delete(String isbn) {
         library.delete(isbn);
         return "Deleted " + isbn;
     }
 
-    @GET
-    @Path("/summary")
     public  List<Summary> summary() {
         return library.summarize();
     }
 
+    public List<Publisher> allPublishers() {
+        return library.allPublishers();
+    }
+
+    public List<Author> allAuthors() {
+        return library.allAuthors();
+    }
 }

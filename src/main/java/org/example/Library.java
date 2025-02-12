@@ -44,4 +44,8 @@ public interface Library {
             """)
     List<Summary> summarize();
 
+    @Find
+    List<Publisher> allPublishers();
+
+    @Find List<Author> allAuthors();
 }
