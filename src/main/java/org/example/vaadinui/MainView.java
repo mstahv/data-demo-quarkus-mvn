@@ -1,6 +1,7 @@
 package org.example.vaadinui;
 
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -20,6 +21,8 @@ public class MainView extends VerticalLayout {
         }});
 
         add(new RouterLink("List and add new Books", BooksView.class));
+
+        add(new Anchor("https://github.com/mstahv/jakarta-data-example", "Full Source Code in GitHub"));
 
     }
 
