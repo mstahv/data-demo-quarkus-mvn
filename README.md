@@ -17,3 +17,4 @@ Other notable changes (in addition to the Vaadin web GUI) to the original exampl
  * book-author relationship is mapped from book (instead of author), easier to add new books (which I implemented first in the Vaadin UI) as authors don't need to be updated separately.
  * There is AuthorRepository extending CrudRepository, which provides Spring Data JPA like default methods suitable for basic CRUD operations. This is utilized (in an ugly manner) directly from the AuthorView. This view is utilizing Viritin's RAD helpers, but building a similar forms with Vaadin's core components would be pretty similar (but with Binder you might e.g. need getters and setters etc.).
  * Some relations were made public (don't know why they were package private).
+ * Library resource contains some small additions, like loadAuthors method, which is used to populate lazy loaded relation for Book (needed for the UI to show "all data" of a Book entity).

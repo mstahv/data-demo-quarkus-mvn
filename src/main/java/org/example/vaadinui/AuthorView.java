@@ -52,6 +52,7 @@ public class AuthorView extends VerticalLayout {
 
         public AuthorGrid(AuthorRepository authorRepository) {
             super(Author.class);
+            getColumnByKey("books").removeFromParent(); // lazy loaded collection, would need a join query to show this properly
             this.repo = authorRepository;
             listEntities();
             addComponentColumn(author -> new VHorizontalLayout(
