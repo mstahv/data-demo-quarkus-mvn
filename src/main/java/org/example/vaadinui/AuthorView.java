@@ -3,11 +3,7 @@ package org.example.vaadinui;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.data.provider.SortDirection;
 import com.vaadin.flow.router.Route;
-import jakarta.data.Order;
-import jakarta.data.Sort;
-import jakarta.data.page.PageRequest;
 import org.example.Author;
 import org.example.AuthorRepository;
 import org.vaadin.firitin.appframework.MenuItem;
@@ -19,8 +15,8 @@ import org.vaadin.firitin.components.orderedlayout.VHorizontalLayout;
 import org.vaadin.firitin.rad.AutoForm;
 import org.vaadin.firitin.rad.AutoFormContext;
 
-import java.util.List;
-import java.util.function.IntFunction;
+import static org.example.vaadinui.JakartaDataHelper.toOrder;
+import static org.example.vaadinui.JakartaDataHelper.toPageRequest;
 
 @Route(layout = Layout.class)
 @MenuItem(icon = VaadinIcon.USERS)
@@ -83,14 +79,8 @@ public class AuthorView extends VerticalLayout {
             // Lazy loading of data from Jakarta Data repository with pagination to Vaadin Grid
             // New rows are fetched when scrolling (if there is more data)
             setItems(q -> {
-                // TODO there could be similar helper that is shipped with Vaadin Spring
-                // to do this mechanic conversion from Vaadin Query to Jakarta Data
-                int page = q.getPage() + 1; // Vaadin pages are 0-based, like in Spring Data, Jakarta Data pages are 1-based
-                var pageRequest = PageRequest.ofPage(page, q.getPageSize(), false);
-                Order order = Order.by(q.getSortOrders().stream().map(so -> so.getDirection() == SortDirection.ASCENDING ?
-                        Sort.asc(so.getSorted()) : Sort.desc(so.getSorted())).toArray((IntFunction<Sort<Author>[]>) Sort[]::new));
-                List<Author> content = repo.findAll(pageRequest, order).content();
-                return content.stream();
+                // Mapping from Vaadin Grid query to Jakarta Data PageRequest/Order with helper methods
+                return repo.findAll(toPageRequest(q), toOrder(q)).stream();
             });
         }
     }
