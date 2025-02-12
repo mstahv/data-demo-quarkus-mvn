@@ -17,7 +17,7 @@ public class Author {
 
     public Address address;
 
-    @ManyToMany
-    Set<Book> books;
+    @ManyToMany(mappedBy = Book_.AUTHORS)
+    public Set<Book> books;
 }
 

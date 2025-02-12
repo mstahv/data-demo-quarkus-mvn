@@ -6,6 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.NaturalId;
 
@@ -19,6 +20,7 @@ import static jakarta.persistence.EnumType.STRING;
 @Entity
 public class Book {
     @Id
+    @NotEmpty
     public String isbn;
 
     @NaturalId
@@ -36,8 +38,9 @@ public class Book {
     @ManyToOne
     public Publisher publisher;
 
-    @ManyToMany(mappedBy = Author_.BOOKS)
-    Set<Author> authors;
+    @ManyToMany
+    @NotEmpty
+    public Set<Author> authors = new java.util.HashSet<>();
 
     @NotNull
     public int pages;

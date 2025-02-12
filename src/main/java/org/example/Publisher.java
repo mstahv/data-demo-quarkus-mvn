@@ -16,5 +16,5 @@ public class Publisher {
     public String name;
 
     @OneToMany(mappedBy = Book_.PUBLISHER)
-    Set<Book> books;
+    public Set<Book> books;
 }
